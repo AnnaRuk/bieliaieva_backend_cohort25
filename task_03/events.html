@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>events</title>
+
+    <style>
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            border: 1px solid #ccc;
+            margin: 5px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>EVENTS</h1>
+   
+<button id="loadEvents">Load Events</button>
+<ul id="todo-list">
+    
+</ul>
+
+<h2>Form to add new event</h2>
+
+<form id="eventForm">
+    <label>Title
+        <input name="inputTitle" placeholder="text title ...">
+    </label>
+    <label>Description
+        <input name="inputDescription" placeholder="text the description ...">
+    </label>
+    <input type="submit" value="Add Event">
+</form>
+
+
+<script>
+    // GET
+async function fetchLoadEvents(){
+    try {
+
+    let response = await fetch('http://localhost:8080/events');
+    const obj = await response.json();
+    console.dir(obj);
+    const list = document.getElementById('todo-list');
+    list.innerHTML = '';
+    obj.forEach(item => {
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `
+                        <span>${item.title}</span>`;
+                list.appendChild(listItem);
+            });
+        } catch (error) {
+            console.error('Error fetching data:');
+        }
+}
+const loadDataButton = document.getElementById('loadEvents');
+    loadDataButton.addEventListener('click', fetchLoadEvents);
+
+// POST
+const eventForm = document.getElementById('eventForm');
+eventForm.addEventListener('submit', async function(event) {
+    event.preventDefault(); 
+
+    const formData = new FormData(eventForm);
+    const title = formData.get('inputTitle');
+    const description = formData.get('inputDescription');
+
+    try {
+        const response = await fetch('http://localhost:8080/events', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({title}),
+        });
+
+        if (response.ok) {
+            const newItem = await response.json();
+            const list = document.getElementById('todo-list');
+            const listItem = document.createElement('li');
+            listItem.innerHTML = `<span>${newItem.title}</span>`;
+            list.appendChild(listItem);
+        } else {
+            console.error('Error adding event:', response.statusText);
+        }
+    } catch (error) {
+        console.error('Error adding event:', error);
+    }
+});
+</script>
+
+</body>
+</html>
