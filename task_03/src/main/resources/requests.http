@@ -1,0 +1,14 @@
+### Получение пользователей
+
+GET localhost:8080/events
+
+### Добавление пользовтаеля
+
+POST localhost:8080/events
+Content-Type: application/json
+
+{
+  "title": "TODO from IDEA",
+  "description": "descriptionIDEA"
+
+}
