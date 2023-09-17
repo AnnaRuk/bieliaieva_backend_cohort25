@@ -1,0 +1,17 @@
+### Получение events
+
+GET localhost:8080/events
+
+### Добавление event
+
+POST localhost:8080/events
+Content-Type: application/json
+
+{
+  "title": "TODO from IDEA",
+  "description": "descriptionIDEA",
+  "beginDate": "2023-10-11",
+  "endDate": "2023-10-13",
+  "budget": 2000.00
+
+}
