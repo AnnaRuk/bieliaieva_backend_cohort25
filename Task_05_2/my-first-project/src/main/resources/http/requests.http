@@ -1,0 +1,58 @@
+### add new Product
+POST http://localhost:8080/api/products
+Content-Type: application/json
+
+{
+  "productName": "",
+  "categoryId": 1,
+  "expirationDate": "23.05.2023",
+  "description": "Descriptions of new product 3",
+  "price": 100.00
+}
+
+### get All Products
+GET http://localhost:8080/api/products
+
+### get Product
+
+GET http://localhost:8080/api/products/2
+
+### add new User
+POST http://localhost:8080/api/users/register
+Content-Type: application/json
+
+{
+"firstName": "Anna",
+"lastName": "Bieliaieva",
+"email": "anna@gmail.com",
+"password": "Qwerty555!"
+
+}
+
+### add new Venue
+POST http://localhost:8080/api/venues
+Content-Type: application/json
+
+{
+"venueName": "Carnegie Hall",
+"address": "881 7th Ave, New York, NY 10019, USA",
+"square": 485000.00
+}
+
+### add new Event
+POST http://localhost:8080/api/events
+Content-Type: application/json
+
+{
+  "title": "birthday party",
+  "data": "15.06.2024"
+}
+
+### adding an event to the venue
+POST http://localhost:8080/api/venues/1/events
+Content-Type: application/json
+
+{
+  "title": "Halloween Party",
+  "date": "30.10.2023"
+}
