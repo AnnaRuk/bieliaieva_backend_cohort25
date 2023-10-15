@@ -1,0 +1,82 @@
+### add new Product
+POST http://localhost:8080/api/products
+Content-Type: application/json
+
+{
+  "productName": "",
+  "categoryId": 1,
+  "expirationDate": "23.05.2023",
+  "description": "Descriptions of new product 3",
+  "price": 100.00
+}
+
+### get All Products
+GET http://localhost:8080/api/products
+
+### get Product
+
+GET http://localhost:8080/api/products/2
+
+### add new User
+POST http://localhost:8080/api/users/register
+Content-Type: application/json
+
+{
+"firstName": "Alex",
+"lastName": "Rukin",
+"email": "alex@gmail.com",
+"password": "Qwerty999!"
+
+}
+
+### add new Venue
+POST http://localhost:8080/api/venues
+Content-Type: application/json
+
+{
+"venueName": "Metropolitan Opera",
+"address": "New York City",
+"square": 500000.00
+}
+
+### add new Event
+POST http://localhost:8080/api/events
+Content-Type: application/json
+
+{
+  "title": "Party",
+  "date": "07.10.2023"
+}
+
+### adding an event to the venue: new (title,date)/  only id if event exists
+POST http://localhost:8080/api/venues/2/events
+Content-Type: application/json
+
+{
+  "existsEventId": 10
+}
+
+### adding a user to the event
+POST http://localhost:8080/api/events/1/users
+Content-Type: application/json
+
+{
+  "userId": 1
+}
+
+### geting all users to the event
+GET http://localhost:8080/api/events/3/users
+Content-Type: application/json
+
+### update event by venue
+PUT http://localhost:8080/api/venues/2/events/10
+Content-Type: application/json
+
+{
+  "title": "Update",
+  "date": "01.01.2024"
+}
+
+### delete event by venue
+DELETE http://localhost:8080/api/venues/2/events/10
+Content-Type: application/json
